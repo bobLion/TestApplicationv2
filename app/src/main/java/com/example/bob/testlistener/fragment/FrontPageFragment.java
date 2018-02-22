@@ -90,7 +90,9 @@ public class FrontPageFragment extends BaseFragment{
     private String[] imgs = {"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274510&di=20b5a9068273ce18055564f83a7e8f45&imgtype=0&src=http%3A%2F%2Fa3.topitme.com%2F0%2F55%2F1b%2F11216512689c41b550o.jpg" ,
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274509&di=cf5914bea84b10c5400e3d5699b2a0a1&imgtype=0&src=http%3A%2F%2Fupload.ct.youth.cn%2F2014%2F1228%2F1419724430495.jpg",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274507&di=cc13992b42b5828094a7a89c64a3b027&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161031%2F8a924de6915d467286c7e2a3432a2529_th.jpeg",
+            "http://a2.qpic.cn/psb?/V12OUOeY0UH2KX/b8W.PQe9Wr*iwlnCGKRDMyUZ8BEOBAKn5tIHVeUHwMg!/b/dGEBAAAAAAAA&bo=CAewBAgHsAQRBzA!&rf=viewer_4",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274495&di=4016b43354014f2fc5551fc48211c28f&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F13%2F28%2F300001051406131167289986614_950.jpg",
+           "http://a3.qpic.cn/psb?/V12OUOeY0UH2KX/h8iA96hL.0BcBYo814gxbPVfiJS36qUFEnVGNBa6RQE!/b/dHIAAAAAAAAA&bo=CAewBAgHsAQRBzA!&rf=viewer_4",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807465163&di=771f8fdbeefe8111f68078330901e9f3&imgtype=0&src=http%3A%2F%2Fimg.taopic.com%2Fuploads%2Fallimg%2F111121%2F10020-11112109552840.jpg",
             "https://goss1.vcg.com/creative/vcg/800/version23/VCG41160557579.jpg",
             "http://mpic.tiankong.com/aca/722/aca7224cedb82c2d378ddbb35ad3cc1a/640.jpg"
@@ -166,100 +168,37 @@ public class FrontPageFragment extends BaseFragment{
 //                    intent.setClassName("com.taobao.taobao", "com.taobao.tao.detail.activity.DetailActivity");
                     intent.setClassName("com.taobao.taobao", "com.tmall.wireless.splash.TMSplashActivity");
                     startActivity(intent);*/
-                   if(CheckApplications.isApplicationAvailable(mContext,"com.tmall.wireless")){
-                       Toast.makeText(mContext,"即将跳转至手机天猫客户端",Toast.LENGTH_LONG).show();
-                       turnToAnotherApplication("com.tmall.wireless","com.tmall.wireless.splash.TMSplashActivity","天猫");
-                   }else{
-                       Toast.makeText(mContext,"请先安装手机天猫客户端",Toast.LENGTH_LONG).show();
-                   }
+                   turnToAnotherApplication("com.tmall.wireless","com.tmall.wireless.splash.TMSplashActivity","天猫");
                 }else if(position == 1){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.jingdong.app.mall")){
-
-                        Toast.makeText(mContext,"即将跳转至手机京东客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.jingdong.app.mall","com.jingdong.app.mall.main.MainActivity","京东");
-                    }else{
-                        Toast.makeText(mContext,"请先安装手机京东客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.jingdong.app.mall","com.jingdong.app.mall.main.MainActivity","京东");
                 }else if(position == 2){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.thestore.main")){
-                        Toast.makeText(mContext,"即将跳转至手机一号店客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.thestore.main","com.thestore.main.LoadingActivity","一号店");
-                    }else{
-
-                        Toast.makeText(mContext,"请先安装手机一号店客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.thestore.main","com.thestore.main.LoadingActivity","一号店");
                 }else if(position == 3){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.suning.mobile.ebuy")){
-                        Toast.makeText(mContext,"即将跳转至苏宁易购手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.suning.mobile.ebuy","com.suning.mobile.ebuy.base.host.InitialActivity","苏宁易购");
-                    }else{
-                        Toast.makeText(mContext,"请先安装苏宁易购手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.suning.mobile.ebuy","com.suning.mobile.ebuy.base.host.InitialActivity","苏宁易购");
                 }else if(position == 4){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.dangdang.buy2")){
-                        Toast.makeText(mContext,"即将跳转至当当手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.dangdang.buy2","com.dangdang.buy2.StartupActivity","当当");
-                    }else{
-                        Toast.makeText(mContext,"请先安装当当手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.dangdang.buy2","com.dangdang.buy2.StartupActivity","当当");
                 }else if(position == 5){
-                    if(CheckApplications.isApplicationAvailable(mContext,"cn.amazon.mShop.android")){
-                        Toast.makeText(mContext,"即将跳转至亚马逊手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("cn.amazon.mShop.android","com.amazon.mShop.home.HomeActivity","亚马逊");
-                    }else{
-                        Toast.makeText(mContext,"请先安装亚马逊手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("cn.amazon.mShop.android","com.amazon.mShop.home.HomeActivity","亚马逊");
                 }else if(position == 6){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.achievo.vipshop")){
-                        Toast.makeText(mContext,"即将跳转至唯品会手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.achievo.vipshop","com.achievo.vipshop.activity.LodingActivity","唯品会");
-                    }else{
-                        Toast.makeText(mContext,"请先安装唯品会手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.achievo.vipshop","com.achievo.vipshop.activity.LodingActivity","唯品会");
                 }else if(position == 7){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.xunmeng.pinduoduo")){
-                        Toast.makeText(mContext,"即将跳转至拼多多手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.xunmeng.pinduoduo","com.xunmeng.pinduoduo.ui.activity.MainFrameActivity","拼多多");
-                    }else{
-                        Toast.makeText(mContext,"请先安装拼多多手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.xunmeng.pinduoduo","com.xunmeng.pinduoduo.ui.activity.MainFrameActivity","拼多多");
                 }
             }
         });
+
         mGrdFood.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){
-                    if(CheckApplications.isApplicationAvailable(mContext,"me.ele")){
-                        Toast.makeText(mContext,"即将跳转至饿了么手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("me.ele","me.ele.Launcher","饿了么");
-                    }else{
-                        Toast.makeText(mContext,"请先安装饿了么手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("me.ele","me.ele.Launcher","饿了么");
                 }else if(position == 1){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.baidu.lbs.waimai")){
-                        Toast.makeText(mContext,"即将跳转至百度外卖手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.baidu.lbs.waimai","com.baidu.lbs.waimai.SplashActivity","百度外卖");
-                    }else{
-                        Toast.makeText(mContext,"请先安装百度外卖手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.baidu.lbs.waimai","com.baidu.lbs.waimai.SplashActivity","百度外卖");
                 }else if(position == 2){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.sankuai.meituan.takeoutnew")){
-                        Toast.makeText(mContext,"即将跳转至美团外卖手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.sankuai.meituan.takeoutnew","com.sankuai.meituan.takeoutnew.ui.page.boot.WelcomeActivity","美团");
-                    }else{
-                        Toast.makeText(mContext,"请先安装美团外卖手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.sankuai.meituan.takeoutnew","com.sankuai.meituan.takeoutnew.ui.page.boot.WelcomeActivity","美团外卖");
                 }else if(position == 3){
-                    if(CheckApplications.isApplicationAvailable(mContext,"com.dianping.v1")){
-                        Toast.makeText(mContext,"即将跳转至大众点评手机客户端",Toast.LENGTH_LONG).show();
-                        turnToAnotherApplication("com.dianping.v1","com.dianping.main.guide.SplashScreenActivity","大众点评");
-                    }else{
-                        Toast.makeText(mContext,"请先安装大众点评手机客户端",Toast.LENGTH_LONG).show();
-                    }
+                    turnToAnotherApplication("com.dianping.v1","com.dianping.main.guide.SplashScreenActivity","大众点评");
                 }
-
-
             }
         });
 
@@ -355,12 +294,17 @@ public class FrontPageFragment extends BaseFragment{
         }
     }
 
-    private void turnToAnotherApplication(String packageNamw,String activityName,String appName){
-        Toast.makeText(mContext,"即将跳转至" + appName + "手机客户端",Toast.LENGTH_LONG).show();
-        ComponentName  comp = new ComponentName(packageNamw, activityName);
-        Intent mIntent = new Intent();
-        mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mIntent.setComponent(comp);
-        startActivity(mIntent);
+    private void turnToAnotherApplication(String packageName,String activityName,String appName){
+        if(CheckApplications.isApplicationAvailable(mContext,packageName)){
+            Toast.makeText(mContext,"即将跳转至" + appName + "手机客户端",Toast.LENGTH_LONG).show();
+            ComponentName  comp = new ComponentName(packageName, activityName);
+            Intent mIntent = new Intent();
+            mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mIntent.setComponent(comp);
+            startActivity(mIntent);
+        }else{
+            Toast.makeText(mContext,"请先安装" + appName + "手机客户端",Toast.LENGTH_LONG).show();
+        }
+
     }
 }
