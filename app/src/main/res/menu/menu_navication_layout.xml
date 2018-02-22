@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_item_profile"
+        android:title="个人中心"
+        android:icon="@drawable/ic_settings_black_24dp"></item>
+
+    <item
+        android:id="@+id/navigation_item_shopping_cart"
+        android:title="购物车"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"></item>
+
+    <item
+        android:id="@+id/navigation_item_setting"
+        android:title="设置"
+        android:icon="@drawable/ic_person_black_24dp"></item>
+</menu>

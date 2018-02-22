@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">TestListener</string>
+    <string name="preference_accent_color">accent_color</string>
+    <string name="preference_base_theme">basic_theme</string>
+    <string name="preference_colored_nav_bar">nav_bar</string>
+    <string name="preference_custom_icon_color">custom_icon_color</string>
+    <string name="preference_primary_color">primary_color</string>
+    <string name="preference_translucent_status_bar">set_translucent_statusbar</string>
+    <string name="preference_internal_uri_extsdcard_photos">uri_extsdcard_photos</string>
+    <string name="rename_photo_action">Rename photo</string>
+
+    <!--PHOTO DETAILS-->
+    <string name="path">Path</string>
+    <string name="type">Type</string>
+    <string name="resolution">Resolution</string>
+    <string name="exif">EXIF</string>
+    <string name="device">Device</string>
+    <string name="orientation">Orientation</string>
+    <string name="location">Location</string>
+
+
+    <string name="size">Size</string>
+    <string name="numeric">As number</string>
+    <string name="ascending">Ascending</string>
+    <string name="date_taken">Date taken</string>
+
+    <string name="sort">Sort</string>
+    <string name="camera">Camera</string>
+    <string name="unable_to_fix_date">Unable to fix date</string>
+    <string name="details">Details</string>
+
+    <string name="preference_apply_theme_pager">apply_theme_img_act</string>
+    <string name="preference_transparency">set_alpha</string>
+    <string name="preference_map_provider">map_provider</string>
+    <string name="preference_show_tips">show_tips</string>
+    <string name="no_app_to_perform">Unable to found an app to perform this action.</string>
+    <string name="card_style_alert">NOTE: Restart the app for make changes.</string>
+    <string name="show_album_path">Show album path</string>
+    <string name="show_preview_image_name">Show preview image name</string>
+    <string name="show_media_count">Show media count</string>
+    <string name="changelog">Changelog</string>
+    <string name="album_path">Album Path</string>
+    <string name="show_more">Show More</string>
+</resources>

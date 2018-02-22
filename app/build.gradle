@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.example.bob.testlistener"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile('com.android.support:appcompat-v7:24.1.1') {
+        exclude group: 'com.android.support', module: 'cardview'
+    }
+    compile 'com.android.support:design:24.0.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'com.flyco.roundview:FlycoRoundView_Lib:1.1.2@aar'
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:1.5.0@aar'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.github.rey5137:material:1.2.4'
+    compile 'com.jakewharton:butterknife:8.6.0'
+    compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
+    compile 'com.orhanobut:hawk:2.0.1'
+    compile 'com.mikepenz:iconics-core:2.9.3@aar'
+    compile 'com.drewnoakes:metadata-extractor:2.9.1'
+    compile 'com.guo.android_extend:android-extend:1.0.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    implementation 'jp.wasabeef:recyclerview-animators:2.2.7'
+    //RXJava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //it is recommended to keep the same version of rxAndroid
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
+    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    // debug Only
+    //debugCompile project(':inappstoragereader')
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.3'
+    // icons
+    implementation 'com.mikepenz:iconics-core:2.9.3@aar'
+    implementation 'com.mikepenz:iconics-views:2.9.3@aar'
+    implementation 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
+    implementation 'com.mikepenz:community-material-typeface:1.9.32.2@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:4.7.0.1@aar'
+    //utils
+    implementation files('libs/bypasses-1.0.4-sources.jar')
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+<com.tr4android.support.extension.widget.AccountHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/account_header"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/account_header_height"
+    app:accountHeaderManageEnabled="false"
+    app:accountHeaderAddEnabled="false"
+    app:accountHeaderCheckableAccountsEnabled="false"/>-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="168dp"
+    android:background="@color/material_blue"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/widget_container_length_35">
+
+
+    <ImageView
+        android:layout_width="@dimen/icon_width_68"
+        android:layout_height="@dimen/icon_width_68"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:src="@mipmap/pic_touxiang"/>
+
+    <LinearLayout
+        android:id="@+id/account_header_text"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp">
+
+        <TextView
+            android:id="@+id/account_header_text_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:lines="1"
+            android:singleLine="true"
+            android:textColor="?android:attr/textColorPrimaryInverse"
+            android:textSize="14sp"
+            android:text="10009"/>
+
+        <TextView
+            android:id="@+id/account_header_text_org"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:lines="1"
+            android:singleLine="true"
+            android:textColor="?android:attr/textColorSecondaryInverse"
+            android:textSize="14sp"
+            android:text=""/>
+    </LinearLayout>
+</RelativeLayout>

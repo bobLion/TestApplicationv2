@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.example.bob.testlistener.widget.ImageCycleView
+                android:id="@+id/ad_view"
+                android:layout_width="fill_parent"
+                android:layout_height="150dip"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/btn_front_page_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="点击"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_shopping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="购物"
+                android:layout_marginLeft="5dp"
+                android:layout_below="@id/ad_view"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:id="@+id/line1"
+                style="@style/horizontal_line"
+                android:layout_below="@id/tv_shopping"/>
+
+            <com.example.bob.testlistener.widget.CustomerGridView
+                android:id="@+id/grd_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="4"
+                android:verticalSpacing="5dp"
+                android:layout_below="@id/line1"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_tip_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="美食"
+                android:layout_below="@id/grd_main"
+                android:layout_marginLeft="5dp"/>
+            <View
+                android:id="@+id/line2"
+                style="@style/horizontal_line"
+                android:layout_below="@id/tv_tip_middle"/>
+
+            <com.example.bob.testlistener.widget.CustomerGridView
+                android:id="@+id/grd_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="4"
+                android:verticalSpacing="5dp"
+                android:layout_below="@id/line2"
+                android:padding="5dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/grd_food"
+                android:scrollbars="vertical"
+                android:layout_marginTop="5dp"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

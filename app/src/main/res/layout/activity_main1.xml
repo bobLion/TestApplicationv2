@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+               <!-- <android.support.design.widget.FloatingActionButton
+                   android:id="@+id/btn_duty_handle"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                   android:layout_marginBottom="@dimen/widget_container_length_10"
+                   android:layout_marginRight="@dimen/widget_container_length_10"
+                   android:tint="@android:color/white"
+                   app:srcCompat="@drawable/ic_brightness_1_black_24dp" />-->
+
+        </RelativeLayout>
+
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/buttom_tab"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            app:tl_iconGravity="TOP"
+            app:tl_iconHeight="20dp"
+            app:tl_iconMargin="5dp"
+            app:tl_iconWidth="20dp"
+            app:tl_indicator_bounce_enable="false"
+            app:tl_indicator_color="#FFF"
+            app:tl_indicator_gravity="TOP"
+            app:tl_textSelectColor="@color/colorPrimary"
+            app:tl_textUnselectColor="#333444"
+            app:tl_textsize="12sp"
+            app:tl_underline_gravity="TOP"
+            app:tl_underline_height="1dp"/>
+   <!-- <android.support.design.widget.NavigationView
+        android:id="@+id/menu_navigation_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/account_header"
+        app:menu="@menu/menu_navication_layout" />
+-->
+</LinearLayout>

@@ -1,0 +1,83 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 系统主题 ，无ActionBar，用Toolbar替代ActionBar -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@color/white</item>
+    <!--<item name="android:windowIsTranslucent">true</item>-->
+    </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Widget.TextView.Header.Main" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/font_size_extra_large</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+
+    <style name="AlertDialog_Dark" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorAccent">@color/md_dark_primary_icon</item><!--BOTTONI-->
+        <item name="android:textColorPrimary">@color/md_dark_primary_text</item><!--TESTO-->
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/cardview_dark_background</item>
+    </style>
+
+    <style name="AlertDialog_Dark_Amoled" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorAccent">@color/md_dark_primary_icon</item><!--BOTTONI-->
+        <item name="android:textColorPrimary">@color/md_dark_primary_text</item><!--TESTO-->
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/md_black_1000</item>
+        <item name="android:windowBackground">@color/md_black_1000</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
+    <!--LICENSE DIALOG-->
+    <style name="LicenseDialog_Dark" parent="android:Theme.Dialog">
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/cardview_dark_background</item>
+        <item name="colorAccent">@color/md_dark_primary_icon</item><!--BOTTONI-->
+    </style>
+
+    <style name="MyApp.PopupMenu.Dark" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/cardview_dark_background</item>
+    </style>
+
+    <style name="AmoledDarkActionBarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:popupMenuStyle">@style/MyApp.PopupMenu.Dark</item>
+    </style>
+
+    <style name="LightActionBarMenu" parent="Theme.AppCompat.Light">
+        <item name="android:popupMenuStyle">@style/MyApp.PopupMenu.Light</item>
+    </style>
+
+    <style name="MyApp.PopupMenu.Light" parent="Widget.AppCompat.Light.ListPopupWindow">
+        <item name="android:background">@color/cardview_light_background</item>
+    </style>
+
+    <!--DIALOG THEME-->
+    <style name="AlertDialog_Light" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/md_light_primary_icon</item><!--BOTTONI-->
+        <item name="android:textColorPrimary">@color/md_light_primary_text</item><!--TESTO-->
+    </style>
+
+
+
+    <!--DARK MENU THEME-->
+    <style name="DarkActionBarMenu" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:popupMenuStyle">@style/MyApp.PopupMenu.Dark</item>
+    </style>
+
+    <!-- view分割线样式 -->
+    <style name="horizontal_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/md_grey_850</item>
+        <item name="android:layout_marginLeft">@dimen/widget_container_first_margin</item>
+        <item name="android:layout_marginRight">@dimen/widget_container_first_margin</item>
+    </style>
+
+
+</resources>
