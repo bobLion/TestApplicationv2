@@ -74,4 +74,43 @@ public class AppConfig {
      */
     public static final String LOGIN_USER_CODE = "userCode";
 
+    public static final String TIAN_MAO_APP_PACKAGE_NAME = "com.tmall.wireless";
+    public static final String JING_DONG_APP_PACKAGE_NAME = "com.jingdong.app.mall";
+    public static final String YI_HAO_DIAN_APP_PACKAGE_NAME = "com.thestore.main";
+    public static final String SUNING_APP_PACKAGE_NAME = "com.suning.mobile.ebuy";
+    public static final String DANGDANG_MAO_APP_PACKAGE_NAME = "com.dangdang.buy2";
+    public static final String AMAZON_APP_PACKAGE_NAME = "cn.amazon.mShop.android";
+    public static final String WEI_PIN_HUI_MAO_APP_PACKAGE_NAME = "com.achievo.vipshop";
+    public static final String PIN_DUO_DUO_APP_PACKAGE_NAME = "com.xunmeng.pinduodu";
+    public static final String ELEME_APP_PACKAGE_NAME = "me.ele";
+    public static final String BAI_DU_WAI_MAI_APP_PACKAGE_NAME = "com.baidu.lbs.waimai";
+    public static final String MEI_TUAN_WAI_MAI_APP_PACKAGE_NAME = "com.sankuai.meituan.takeoutnew";
+    public static final String DA_ZHONG_DIAN_PING_APP_PACKAGE_NAME = "com.dianping.v1";
+
+    public static final String JING_DONG_APP_LAUNCH_ACTIVITY_NAME = "com.jingdong.app.mall.main.MainActivity";
+    public static final String YI_HAO_DIAN_APP_LAUNCH_ACTIVITY_NAME = "com.thestore.main.LoadingActivit";
+    public static final String SUNING_APP_LAUNCH_ACTIVITY_NAME = "com.suning.mobile.ebuy.base.host.InitialActivity";
+    public static final String DANGDANG_MAO_APP_LAUNCH_ACTIVITY_NAME = "com.dangdang.buy2.StartupActivity";
+    public static final String AMAZON_APP_LAUNCH_ACTIVITY_NAME = "com.amazon.mShop.home.HomeActivity";
+    public static final String WEI_PIN_HUI_MAO_APP_LAUNCH_ACTIVITY_NAME = "com.achievo.vipshop.activity.LodingActivity";
+    public static final String PIN_DUO_DUO_APP_LAUNCH_ACTIVITY_NAME = "com.xunmeng.pinduoduo.ui.activity.MainFrameActivity";
+    public static final String ELEME_APP_LAUNCH_ACTIVITY_NAME = "me.ele.Launcher";
+    public static final String BAI_DU_WAI_MAI_APP_LAUNCH_ACTIVITY_NAME = "com.baidu.lbs.waimai.SplashActivity";
+    public static final String MEI_TUAN_WAI_MAI_APP_LAUNCH_ACTIVITY_NAME = "com.sankuai.meituan.takeoutnew.ui.page.boot.WelcomeActivity";
+    public static final String DA_ZHONG_DIAN_PING_APP_LAUNCH_ACTIVITY_NAME = "com.dianping.main.guide.SplashScreenActivity";
+    public static final String TIAN_MAO_APP_LAUNCH_ACTIVITY_NAME = "com.tmall.wireless.splash.TMSplashActivity";
+
+    public static final String TIAN_MAO_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String JING_DONG_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String YI_HAO_DIAN_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String SU_NING_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String DANG_DANG_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String AMAZON_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String WEI_PIN_HUI_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String PIN_DUO_DUO_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String ELEME_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String BAI_DU_WAI_MAI_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String MEI_TUAN_WAI_MAI_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String DA_ZHONG_DIAN_PING_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+
 }

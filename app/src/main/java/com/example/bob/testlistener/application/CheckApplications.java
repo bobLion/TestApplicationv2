@@ -23,7 +23,6 @@ public class CheckApplications {
                 pNames.add(pName);
             }
         }
-
         return pNames.contains(packageName);
     }
 }

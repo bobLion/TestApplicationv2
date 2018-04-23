@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -34,6 +34,8 @@ dependencies {
     compile('com.android.support:appcompat-v7:24.1.1') {
         exclude group: 'com.android.support', module: 'cardview'
     }
+    compile 'org.xutils:xutils:3.3.40'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.android.support:design:24.0.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -68,4 +70,7 @@ dependencies {
     implementation 'com.mikepenz:fontawesome-typeface:4.7.0.1@aar'
     //utils
     implementation files('libs/bypasses-1.0.4-sources.jar')
+    //    compile 'com.github.bobLion:TestApplication:1.0'
+    implementation project(':baselibrary')
+    implementation project(':framelibrary')
 }

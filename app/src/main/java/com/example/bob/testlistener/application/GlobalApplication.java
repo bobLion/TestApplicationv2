@@ -14,6 +14,8 @@ import com.example.bob.testlistener.face.FaceDB;
 import com.orhanobut.hawk.Hawk;
 import com.squareup.leakcanary.LeakCanary;
 
+import org.xutils.x;
+
 /**
  * Created by Administrator on 2017/11/13.
  */
@@ -40,6 +42,8 @@ public class GlobalApplication extends Application {
         // Normal app init code...
 
         Hawk.init(this).build();
+        x.Ext.init(this);
+        x.Ext.setDebug(true); // 是否输出debug日志, 开启debug会影响性能.
 
 //        mFaceDB = new FaceDB(this.getExternalCacheDir().getPath());
 //        mImage = null;

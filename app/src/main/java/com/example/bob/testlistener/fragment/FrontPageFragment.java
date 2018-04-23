@@ -1,14 +1,24 @@
 package com.example.bob.testlistener.fragment;
 
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +36,26 @@ import com.example.bob.testlistener.activity.ZoomImagesActivity;
 import com.example.bob.testlistener.adapter.FrontPageRecycleAdapter;
 import com.example.bob.testlistener.application.CheckApplications;
 import com.example.bob.testlistener.base.BaseFragment;
+import com.example.bob.testlistener.config.AppConfig;
+import com.example.bob.testlistener.dialog.CommonDialogFragment;
+import com.example.bob.testlistener.dialog.DialogFragmentHelper;
+import com.example.bob.testlistener.dialog.IDialogResultListener;
 import com.example.bob.testlistener.entity.ADInfo;
+import com.example.bob.testlistener.service.DownloadService;
+import com.example.bob.testlistener.util.DownloadUtil;
+import com.example.bob.testlistener.util.ToastUtils;
 import com.example.bob.testlistener.widget.CustomerGridView;
 import com.example.bob.testlistener.widget.ImageCycleView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +63,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.internal.Utils;
 
 /**
  * Created by Bob on 2017/10/31.
@@ -65,6 +92,11 @@ public class FrontPageFragment extends BaseFragment{
     private GridLayoutManager gridLayoutManager;
     private StaggeredGridLayoutManager staggeredGridLayoutManager;
     private FrontPageRecycleAdapter frontPageRecycleAdapter;
+    private int fileSize;
+    private int downloaddFileSize;
+    private String fileEx, fileNa,fileName;
+    NotificationManager notificationManager;
+    private Notification.Builder builder;
 
     private ArrayList<ADInfo> infos = new ArrayList<ADInfo>();
 
@@ -90,11 +122,11 @@ public class FrontPageFragment extends BaseFragment{
     private String[] imgs = {"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274510&di=20b5a9068273ce18055564f83a7e8f45&imgtype=0&src=http%3A%2F%2Fa3.topitme.com%2F0%2F55%2F1b%2F11216512689c41b550o.jpg" ,
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274509&di=cf5914bea84b10c5400e3d5699b2a0a1&imgtype=0&src=http%3A%2F%2Fupload.ct.youth.cn%2F2014%2F1228%2F1419724430495.jpg",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274507&di=cc13992b42b5828094a7a89c64a3b027&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161031%2F8a924de6915d467286c7e2a3432a2529_th.jpeg",
+            "https://goss1.vcg.com/creative/vcg/800/version23/VCG41160557579.jpg",
             "http://a2.qpic.cn/psb?/V12OUOeY0UH2KX/b8W.PQe9Wr*iwlnCGKRDMyUZ8BEOBAKn5tIHVeUHwMg!/b/dGEBAAAAAAAA&bo=CAewBAgHsAQRBzA!&rf=viewer_4",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274495&di=4016b43354014f2fc5551fc48211c28f&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F13%2F28%2F300001051406131167289986614_950.jpg",
            "http://a3.qpic.cn/psb?/V12OUOeY0UH2KX/h8iA96hL.0BcBYo814gxbPVfiJS36qUFEnVGNBa6RQE!/b/dHIAAAAAAAAA&bo=CAewBAgHsAQRBzA!&rf=viewer_4",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807465163&di=771f8fdbeefe8111f68078330901e9f3&imgtype=0&src=http%3A%2F%2Fimg.taopic.com%2Fuploads%2Fallimg%2F111121%2F10020-11112109552840.jpg",
-            "https://goss1.vcg.com/creative/vcg/800/version23/VCG41160557579.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510807274495&di=4016b43354014f2fc5551fc48211c28f&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F13%2F28%2F300001051406131167289986614_950.jpg",
             "http://mpic.tiankong.com/aca/722/aca7224cedb82c2d378ddbb35ad3cc1a/640.jpg"
     };
 
@@ -102,6 +134,54 @@ public class FrontPageFragment extends BaseFragment{
 
     private OnChangePareTextViewListener onChangePareTextViewListener;
 
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if(!Thread.currentThread().isInterrupted()){
+                notificationManager = (NotificationManager) mContext.getSystemService(Activity.NOTIFICATION_SERVICE);
+                builder = new Notification.Builder(mContext);
+
+                switch (msg.what){
+                    case 0:
+//                        progressBar.setProgress(0);
+                        builder.setSmallIcon(R.mipmap.ic_launcher)
+                                .setContentTitle("正在下载")
+                                .setContentInfo("下载中...");
+                        break;
+                    case 1:
+//                        int result = downloaddFileSize * 100 /fileSize;
+                        int result = (Integer) msg.obj;
+                        builder.setSmallIcon(R.mipmap.ic_launcher)
+                                .setContentTitle("正在下载")
+                                .setContentInfo("下载中...");
+                        builder.setProgress(100,result,false);
+                        notificationManager.notify(0x3,builder.build());
+//                        progressBar.setProgress(result);
+//                        progressBar.setProgress(downloaddFileSize);
+                        break;
+                    case 2:
+                        Toast.makeText(mContext,"文件下载完成！",Toast.LENGTH_LONG).show();
+//                        progressBar.finishLoad();
+                        FileInputStream fis= null;
+                        try {
+                            fis = new FileInputStream(Environment.getExternalStorageDirectory()+ File.separator+"/test/"+fileName);
+                            installAPK(Environment.getExternalStorageDirectory()+ File.separator+"/test/"+fileName);
+                        }catch (FileNotFoundException ex){
+                            ex.printStackTrace();
+                        }
+                        break;
+                    case -1:
+                        String error = msg.getData().getString("error");
+                        Toast.makeText(mContext,error,Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    };
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View view;
@@ -160,29 +240,57 @@ public class FrontPageFragment extends BaseFragment{
         mGrdMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-                   /* Intent intent = new Intent();
-                    intent.setAction("Android.intent.action.VIEW");
-                    Uri uri = Uri.parse("https://item.taobao.com/item.htm?spm=a21123.10416352.saveMoney.1&id=556556823285"); // 商品地址
-                    intent.setData(uri);
-//                    intent.setClassName("com.taobao.taobao", "com.taobao.tao.detail.activity.DetailActivity");
-                    intent.setClassName("com.taobao.taobao", "com.tmall.wireless.splash.TMSplashActivity");
-                    startActivity(intent);*/
-                   turnToAnotherApplication("com.tmall.wireless","com.tmall.wireless.splash.TMSplashActivity","天猫");
-                }else if(position == 1){
-                    turnToAnotherApplication("com.jingdong.app.mall","com.jingdong.app.mall.main.MainActivity","京东");
-                }else if(position == 2){
-                    turnToAnotherApplication("com.thestore.main","com.thestore.main.LoadingActivity","一号店");
-                }else if(position == 3){
-                    turnToAnotherApplication("com.suning.mobile.ebuy","com.suning.mobile.ebuy.base.host.InitialActivity","苏宁易购");
-                }else if(position == 4){
-                    turnToAnotherApplication("com.dangdang.buy2","com.dangdang.buy2.StartupActivity","当当");
-                }else if(position == 5){
-                    turnToAnotherApplication("cn.amazon.mShop.android","com.amazon.mShop.home.HomeActivity","亚马逊");
-                }else if(position == 6){
-                    turnToAnotherApplication("com.achievo.vipshop","com.achievo.vipshop.activity.LodingActivity","唯品会");
-                }else if(position == 7){
-                    turnToAnotherApplication("com.xunmeng.pinduoduo","com.xunmeng.pinduoduo.ui.activity.MainFrameActivity","拼多多");
+                switch (position) {
+                    case 0:
+                        turnToAnotherApplication(AppConfig.TIAN_MAO_APP_PACKAGE_NAME,
+                                AppConfig.TIAN_MAO_APP_LAUNCH_ACTIVITY_NAME,
+                                "天猫",
+                                AppConfig.TIAN_MAO_APP_URL);
+                        break;
+                    case 1:
+                        turnToAnotherApplication(AppConfig.JING_DONG_APP_PACKAGE_NAME,
+                                AppConfig.JING_DONG_APP_LAUNCH_ACTIVITY_NAME,
+                                "京东",
+                                AppConfig.JING_DONG_APP_URL);
+                        break;
+                    case 2:
+                        turnToAnotherApplication(AppConfig.YI_HAO_DIAN_APP_PACKAGE_NAME,
+                                AppConfig.YI_HAO_DIAN_APP_LAUNCH_ACTIVITY_NAME,
+                                "一号店",
+                                AppConfig.YI_HAO_DIAN_APP_URL);
+                        break;
+                    case 3:
+                        turnToAnotherApplication(AppConfig.SUNING_APP_PACKAGE_NAME,
+                                AppConfig.SUNING_APP_LAUNCH_ACTIVITY_NAME,
+                                "苏宁易购",
+                                AppConfig.SU_NING_APP_URL);
+                        break;
+                    case 4:
+                        turnToAnotherApplication(AppConfig.DANGDANG_MAO_APP_PACKAGE_NAME,
+                                AppConfig.DANGDANG_MAO_APP_LAUNCH_ACTIVITY_NAME,
+                                "当当",
+                                AppConfig.DANG_DANG_APP_URL);
+                        break;
+                    case 5:
+                        turnToAnotherApplication(AppConfig.AMAZON_APP_PACKAGE_NAME,
+                                AppConfig.AMAZON_APP_LAUNCH_ACTIVITY_NAME,
+                                "亚马逊",
+                                AppConfig.AMAZON_APP_URL);
+                        break;
+                    case 6:
+                        turnToAnotherApplication(AppConfig.WEI_PIN_HUI_MAO_APP_PACKAGE_NAME,
+                                AppConfig.WEI_PIN_HUI_MAO_APP_LAUNCH_ACTIVITY_NAME,
+                                "唯品会",
+                                AppConfig.WEI_PIN_HUI_APP_URL);
+                        break;
+                    case 7:
+                        turnToAnotherApplication(AppConfig.PIN_DUO_DUO_APP_PACKAGE_NAME,
+                                AppConfig.PIN_DUO_DUO_APP_LAUNCH_ACTIVITY_NAME,
+                                "拼多多",
+                                AppConfig.PIN_DUO_DUO_APP_URL);
+                        break;
+                    default:
+                        break;
                 }
             }
         });
@@ -190,20 +298,40 @@ public class FrontPageFragment extends BaseFragment{
         mGrdFood.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-                    turnToAnotherApplication("me.ele","me.ele.Launcher","饿了么");
-                }else if(position == 1){
-                    turnToAnotherApplication("com.baidu.lbs.waimai","com.baidu.lbs.waimai.SplashActivity","百度外卖");
-                }else if(position == 2){
-                    turnToAnotherApplication("com.sankuai.meituan.takeoutnew","com.sankuai.meituan.takeoutnew.ui.page.boot.WelcomeActivity","美团外卖");
-                }else if(position == 3){
-                    turnToAnotherApplication("com.dianping.v1","com.dianping.main.guide.SplashScreenActivity","大众点评");
+                switch (position){
+                    case 0:
+                        turnToAnotherApplication(AppConfig.ELEME_APP_PACKAGE_NAME,
+                                AppConfig.ELEME_APP_LAUNCH_ACTIVITY_NAME,
+                                "饿了么",
+                                AppConfig.ELEME_APP_URL);
+                        break;
+                    case 1:
+                        turnToAnotherApplication(AppConfig.BAI_DU_WAI_MAI_APP_PACKAGE_NAME,
+                                AppConfig.BAI_DU_WAI_MAI_APP_LAUNCH_ACTIVITY_NAME,
+                                "百度外卖",
+                                AppConfig.BAI_DU_WAI_MAI_APP_URL);
+                        break;
+                    case 2:
+                        turnToAnotherApplication(AppConfig.MEI_TUAN_WAI_MAI_APP_PACKAGE_NAME,
+                                AppConfig.MEI_TUAN_WAI_MAI_APP_LAUNCH_ACTIVITY_NAME,
+                                "美团外卖",
+                                AppConfig.MEI_TUAN_WAI_MAI_APP_URL);
+                        break;
+                    case 3:
+                        turnToAnotherApplication(AppConfig.DANGDANG_MAO_APP_PACKAGE_NAME,
+                                AppConfig.DANGDANG_MAO_APP_LAUNCH_ACTIVITY_NAME,
+                                "大众点评",
+                                AppConfig.DANG_DANG_APP_URL);
+                        break;
+                    default:
+                        break;
                 }
             }
         });
 
 //        gridLayoutManager = new GridLayoutManager(getActivity(),2);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
+//        staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         SpacesItemDecoration decoration=new SpacesItemDecoration(5);
         mRecycleMain.addItemDecoration(decoration);
 //        mRecycleMain.setLayoutManager(gridLayoutManager);
@@ -294,7 +422,7 @@ public class FrontPageFragment extends BaseFragment{
         }
     }
 
-    private void turnToAnotherApplication(String packageName,String activityName,String appName){
+    private void turnToAnotherApplication(String packageName,String activityName,String appName,String fileUrl){
         if(CheckApplications.isApplicationAvailable(mContext,packageName)){
             Toast.makeText(mContext,"即将跳转至" + appName + "手机客户端",Toast.LENGTH_LONG).show();
             ComponentName  comp = new ComponentName(packageName, activityName);
@@ -303,8 +431,103 @@ public class FrontPageFragment extends BaseFragment{
             mIntent.setComponent(comp);
             startActivity(mIntent);
         }else{
-            Toast.makeText(mContext,"请先安装" + appName + "手机客户端",Toast.LENGTH_LONG).show();
+            DialogFragmentHelper.showConfirmDialog(getFragmentManager(), "本地未安装"+appName+"，确定安装"+appName+"手机客户端么？", new IDialogResultListener<Integer>() {
+                @Override
+                public void onDataResult(Integer result) {
+                    downloadFile(fileUrl);
+                }
+            }, true, new CommonDialogFragment.OnDialogCancelListener() {
+                @Override
+                public void onCancel() {
+//                    ToastUtils.show(mContext,"You Click Cancel");
+                }
+            });
         }
 
     }
+
+    private void downloadFile(String fileUrl){
+        Intent intent = new Intent(mContext, DownloadService.class);
+        intent.putExtra("downloadUrl",fileUrl);
+        mContext.startService(intent);
+        /*new Thread(){
+            @Override
+            public void run() {
+                try{
+                    String path =  Environment.getExternalStorageDirectory() + File.separator + "/test/";
+                    fileName = AppConfig.TIAN_MAO_APP_URL.substring(AppConfig.TIAN_MAO_APP_URL.lastIndexOf("/")+1);
+                    URL pUrl = new URL(AppConfig.TIAN_MAO_APP_URL);
+                    URLConnection urlConnection = pUrl.openConnection();
+                    urlConnection.connect();
+                    InputStream is = urlConnection.getInputStream();
+                    fileSize = urlConnection.getContentLength()/1024;
+                    if(null == is){
+                        Toast.makeText(mContext,"获取文件流失败",Toast.LENGTH_LONG).show();
+                    }
+                    if(fileSize <= 0){
+                        Toast.makeText(mContext,"获取文件大小失败",Toast.LENGTH_LONG).show();
+                    }
+                    File file = new File(path);
+                    File file1 = new File(path + fileName);
+                    if(!file.exists()){
+                        file.mkdirs();
+                    }
+                    if(!file1.exists()){
+                        file1.createNewFile();
+                    }
+                    FileOutputStream fos = new FileOutputStream(path + fileName);
+                    byte[] buffer = new byte[1024];
+                    downloaddFileSize  = 0;
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = 0;
+                    mHandler.sendMessage(msg);
+                    do{
+                        int number = is.read(buffer);
+                        if(number == -1){
+                            break;
+                        }
+                        fos.write(buffer,0,number);
+                        downloaddFileSize += number;
+                        Message msg1 = mHandler.obtainMessage();
+                        msg1.what = 1;
+                        int result = (downloaddFileSize/1024) * 100 /fileSize;
+                        msg1.obj = (downloaddFileSize/1024) * 100 / fileSize;
+                        mHandler.sendMessage(msg1);
+
+                    }while (true);
+                    Message msg2 = mHandler.obtainMessage();
+                    msg2.what = 2;
+                    mHandler.sendMessage(msg2);
+                    try {
+                        is.close();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }catch (Exception exception){
+                    exception.printStackTrace();
+                }
+            }
+        }.start();*/
+    }
+
+
+    private void installAPK(String apkPath ) {
+//        if (Build.VERSION.SDK_INT < 23) {
+           /* Intent intents = new Intent();
+            intents.setAction("android.intent.action.VIEW");
+            intents.addCategory("android.intent.category.DEFAULT");
+            intents.setType("application/vnd.android.package-archive");
+            intents.setData(apk);
+            intents.setDataAndType(apk, "application/vnd.android.package-archive");
+            intents.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intents);*/
+//        }
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(new File(apkPath)),"application/vnd.android.package-archive");
+        startActivity(intent);
+
+    }
+
+
+
 }

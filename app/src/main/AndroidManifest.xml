@@ -50,7 +50,8 @@
         </service>
 
         <activity android:name=".activity.ZoomImagesActivity" />
-        <activity android:name=".activity.FaceCheckActivity"></activity>
+        <activity android:name=".activity.FaceCheckActivity"/>
+        <service android:enabled="true" android:exported="true"  android:name=".service.DownloadService"/>
     </application>
 
 </manifest>

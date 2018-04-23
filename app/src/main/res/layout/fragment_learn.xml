@@ -1,11 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:vpi="http://schemas.android.com/tools">
 <TextView
     android:id="@+id/tv_my_shopcart"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="learn"
     android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_my_shopcart"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:clickable="false" >
+
+            <Button
+                android:id="@+id/btn_download"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/widget_container_first_margin"
+                android:layout_marginRight="@dimen/widget_container_first_margin"
+                android:layout_marginTop="@dimen/widget_container_bigger_margin"
+                android:textSize="@dimen/font_size_medium"
+                android:visibility="visible"
+                android:text="下载新版本"/>
+        </RelativeLayout>
+
+        <com.example.bob.testlistener.widget.FlikerProgressBar
+            android:id="@+id/bpb_download_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            app:filk_textSize="12sp"
+            vpi:filk_textSize="12sp"
+            vpi:loadingColor="#40c4ff"
+            vpi:stopColor="#ff9800"
+            vpi:filk_radius="20dp"/>
+    </LinearLayout>
 </RelativeLayout>
