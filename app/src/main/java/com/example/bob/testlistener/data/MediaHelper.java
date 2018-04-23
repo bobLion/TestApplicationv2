@@ -34,6 +34,12 @@ public class MediaHelper {
     }
 
 
+    /**
+     * 删除媒体文件集
+     * @param context
+     * @param mediaToDelete
+     * @return
+     */
     public static Observable<Media> deleteMedia(Context context, ArrayList<Media> mediaToDelete) {
         return Observable.create(subscriber -> {
             for (Media media : mediaToDelete) {
@@ -45,6 +51,12 @@ public class MediaHelper {
         });
     }
 
+    /**
+     * 删除媒体文件
+     * @param context
+     * @param media
+     * @return
+     */
     private static boolean internalDeleteMedia(Context context, Media media) {
         File file = new File(media.getPath());
         boolean success = StorageHelper.deleteFile(context, file);
@@ -54,6 +66,13 @@ public class MediaHelper {
         return success;
     }
 
+    /**
+     * 重命名媒体文件
+     * @param context
+     * @param media
+     * @param newName
+     * @return
+     */
     public static boolean renameMedia(Context context, Media media, String newName) {
         boolean success = false;
         try {

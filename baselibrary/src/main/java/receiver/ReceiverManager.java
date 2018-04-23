@@ -1,4 +1,4 @@
-package com.example.bob.testlistener.manager;
+package receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

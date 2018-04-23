@@ -1,4 +1,4 @@
-package com.example.bob.testlistener.util;
+package util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

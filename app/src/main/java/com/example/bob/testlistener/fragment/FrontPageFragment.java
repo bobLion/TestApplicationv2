@@ -3,35 +3,28 @@ package com.example.bob.testlistener.fragment;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bob.testlistener.R;
-import com.example.bob.testlistener.activity.FaceCheckActivity;
 import com.example.bob.testlistener.activity.ZoomImagesActivity;
 import com.example.bob.testlistener.adapter.FrontPageRecycleAdapter;
 import com.example.bob.testlistener.application.CheckApplications;
@@ -42,20 +35,12 @@ import com.example.bob.testlistener.dialog.DialogFragmentHelper;
 import com.example.bob.testlistener.dialog.IDialogResultListener;
 import com.example.bob.testlistener.entity.ADInfo;
 import com.example.bob.testlistener.service.DownloadService;
-import com.example.bob.testlistener.util.DownloadUtil;
-import com.example.bob.testlistener.util.ToastUtils;
 import com.example.bob.testlistener.widget.CustomerGridView;
 import com.example.bob.testlistener.widget.ImageCycleView;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +48,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.internal.Utils;
 
 /**
  * Created by Bob on 2017/10/31.

@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.example.bob.testlistener.application.AppLifeReceiver;
 import com.example.bob.testlistener.config.AppConfig;
-import com.example.bob.testlistener.util.PreferenceUtil;
+
+import receiver.AppLifeReceiver;
+import util.PreferenceUtil;
 
 /**
  * Created by Bob on 2017/10/30.

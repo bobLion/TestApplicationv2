@@ -1,4 +1,4 @@
-package com.example.bob.testlistener.application;
+package receiver;
 
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManager.RunningTaskInfo;
@@ -8,11 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 
 
-import com.example.bob.testlistener.manager.ActivityManager;
-import com.example.bob.testlistener.manager.ReceiverManager;
-import com.example.bob.testlistener.manager.ScheduleTaskManager;
-
 import java.util.List;
+
+import manager.ActivityManager;
+import manager.ScheduleTaskManager;
 
 public class AppLifeReceiver extends BroadcastReceiver {
 	public static final String ON_APP_QUIT = "com.sailing.android.cmjw.app.quit";

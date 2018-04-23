@@ -1,4 +1,4 @@
-package com.example.bob.testlistener.manager;
+package manager;
 
 import android.app.Activity;
 import android.content.Context;

@@ -35,6 +35,11 @@ public class StringUtils {
         return mime.split("/")[0] + "/*";
     }
 
+    /**
+     * 根据照片路径获取照片名
+     * @param path
+     * @return
+     */
     public static String getPhotoNameByPath(String path) {
         String b[] = path.split("/");
         String fi = b[b.length - 1];
@@ -58,6 +63,11 @@ public class StringUtils {
         else return Html.fromHtml(s);
     }
 
+    /**
+     * 传入媒体文件获得媒体文件名
+     * @param path
+     * @return
+     */
     public static String getName(String path) {
         String b[] = path.split("/");
         return b[b.length - 1];
@@ -144,6 +154,14 @@ public class StringUtils {
         return html(res);
     }
 
+    /**
+     * 用html格式变换字体颜色，字体格式（粗细）
+     * @param content
+     * @param hexcolor
+     * @param bold
+     * @param italic
+     * @return
+     */
     public static Spanned htmlFormat(String content, @Nullable String hexcolor, boolean bold, boolean italic) {
         String res = content;
         if (hexcolor != null) res = color(hexcolor, res);
@@ -152,6 +170,12 @@ public class StringUtils {
         return html(res);
     }
 
+    /**
+     * 改变字体颜色
+     * @param color
+     * @param content
+     * @return
+     */
     public static String color(int color, String content) {
         return String.format(Locale.ENGLISH,
                 "<font color='%s'>%s</font>",
