@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.example.bob.testlistener.R;
 import com.example.bob.testlistener.base.BaseFragment;
-import com.example.bob.testlistener.util.PreferenceUtil;
 import com.tencent.smtt.sdk.CookieManager;
 import com.tencent.smtt.sdk.CookieSyncManager;
 import com.tencent.smtt.sdk.WebSettings;
