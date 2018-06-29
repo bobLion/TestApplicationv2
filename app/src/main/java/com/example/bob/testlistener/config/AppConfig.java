@@ -74,6 +74,8 @@ public class AppConfig {
      */
     public static final String LOGIN_USER_CODE = "userCode";
 
+    public static final String DBNAME = "greendao.db";
+
     public static final String TIAN_MAO_APP_PACKAGE_NAME = "com.tmall.wireless";
     public static final String JING_DONG_APP_PACKAGE_NAME = "com.jingdong.app.mall";
     public static final String YI_HAO_DIAN_APP_PACKAGE_NAME = "com.thestore.main";

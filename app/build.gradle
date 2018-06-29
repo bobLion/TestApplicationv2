@@ -28,8 +28,8 @@ android {
 }
 
 greendao {
-    schemaVersion 1 //数据库版本号
-    daoPackage 'com.speedystone.greendaodemo.db'// 设置DaoMaster、DaoSession、Dao 包名
+    schemaVersion 3 //数据库版本号
+    daoPackage 'com.example.bob.testlistener.database.greendao'// 设置DaoMaster、DaoSession、Dao 包名
     targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
 }
 
@@ -81,9 +81,9 @@ dependencies {
     //    compile 'com.github.bobLion:TestApplication:1.0'
     implementation project(':baselibrary')
     implementation project(':framelibrary')
-
-    compile 'org.greenrobot:greendao:3.2.2' // add library
+    compile 'org.greenrobot:greendao:3.2.2'
+    // add library
     // This is only needed if you want to use encrypted databases
-    compile 'net.zetetic:android-database-sqlcipher:3.5.6'//加密库依赖（可选项）
-
+    compile 'net.zetetic:android-database-sqlcipher:3.5.6'
+    //加密库依赖（可选项）
 }

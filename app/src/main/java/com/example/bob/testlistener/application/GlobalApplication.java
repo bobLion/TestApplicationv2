@@ -1,6 +1,8 @@
 package com.example.bob.testlistener.application;
 
 import android.app.Application;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -10,9 +12,10 @@ import android.util.Log;
 
 import com.example.bob.testlistener.data.Album;
 import com.example.bob.testlistener.data.HandlingAlbums;
+import com.example.bob.testlistener.database.greendao.DaoMaster;
+import com.example.bob.testlistener.database.greendao.DaoSession;
 import com.example.bob.testlistener.face.FaceDB;
 import com.orhanobut.hawk.Hawk;
-import com.squareup.leakcanary.LeakCanary;
 
 import org.xutils.x;
 
@@ -22,25 +25,20 @@ import org.xutils.x;
 
 public class GlobalApplication extends Application {
 
-    private GlobalApplication instance;
+    public static GlobalApplication instance;
+    public static Context mContext;
     FaceDB mFaceDB;
     Uri mImage;
+    private DaoSession daoSession;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
+        mContext = this;
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
-//        if (LeakCanary.isInAnalyzerProcess(this)) {
-//            // This process is dedicated to LeakCanary for heap analysis.
-//            // You should not init your app in this process.
-//            return;
-//        }
-
-//        LeakCanary.install(this);
-        // Normal app init code...
-
         Hawk.init(this).build();
         x.Ext.init(this);
         x.Ext.setDebug(true); // 是否输出debug日志, 开启debug会影响性能.
@@ -48,9 +46,29 @@ public class GlobalApplication extends Application {
 //        mFaceDB = new FaceDB(this.getExternalCacheDir().getPath());
 //        mImage = null;
 
+        initGreenDao();
+
     }
 
-    public GlobalApplication getInstance(){
+    /**
+     * 初始化GreenDao
+     */
+    private void initGreenDao() {
+        MyGreenHelper helper = new MyGreenHelper(this,"test_user.db");
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+    }
+
+    /**
+     * 获取daoSession
+     * @return
+     */
+    public DaoSession getDaoSession(){
+        return daoSession;
+    }
+
+    public static GlobalApplication getInstance(){
         return instance;
     }
 
