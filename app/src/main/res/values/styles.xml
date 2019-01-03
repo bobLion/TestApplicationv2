@@ -108,5 +108,13 @@
         <item name="colorAccent">@color/app_main_color</item>
     </style>
 
+    <declare-styleable name="FlikerProgressBar">
+        <attr name="filk_textSize" format="dimension"/>
+        <attr name="loadingColor" format="color"/>
+        <attr name="stopColor" format="color"/>
+        <attr name="filk_radius" format="dimension"/>
+        <attr name="filk_borderWidth" format="dimension"/>
+    </declare-styleable>
+
 
 </resources>

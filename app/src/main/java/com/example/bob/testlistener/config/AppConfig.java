@@ -103,16 +103,16 @@ public class AppConfig {
     public static final String TIAN_MAO_APP_LAUNCH_ACTIVITY_NAME = "com.tmall.wireless.splash.TMSplashActivity";
 
     public static final String TIAN_MAO_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String JING_DONG_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String YI_HAO_DIAN_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String SU_NING_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String JING_DONG_APP_URL = "http://storage.360buyimg.com/jdmobile/JDMALL-PC2.apk";
+    public static final String YI_HAO_DIAN_APP_URL = "http://storage.360buyimg.com/build-cms/V6.0.2T5_8149237.apk";
+    public static final String SU_NING_APP_URL = "http://gdown.baidu.com/data/wisegame/d3795abd31d9f68e/suningyigou_236.apk";
     public static final String DANG_DANG_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String AMAZON_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String WEI_PIN_HUI_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String PIN_DUO_DUO_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String AMAZON_APP_URL = "http://gdown.baidu.com/data/wisegame/9493e6adc45432b0/yamaxungouwu_1241143010.apk";
+    public static final String WEI_PIN_HUI_APP_URL = "http://gdown.baidu.com/data/wisegame/d3bc93c9cb5e91ee/weipinhui_923.apk";
+    public static final String PIN_DUO_DUO_APP_URL = "http://dl001.liqucn.com/upload/2018/277/o/com.xunmeng.pinduoduo_4.14.2_liqucn.com.apk";
     public static final String ELEME_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String BAI_DU_WAI_MAI_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String MEI_TUAN_WAI_MAI_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
-    public static final String DA_ZHONG_DIAN_PING_APP_URL = "http://gdown.baidu.com/data/wisegame/0f697805a2f8f6cc/tianmao_1809.apk";
+    public static final String BAI_DU_WAI_MAI_APP_URL = "http://gdown.baidu.com/data/wisegame/ede2d909ff0ad519/baiduwaimaimeishidingcan_136.apk";
+    public static final String MEI_TUAN_WAI_MAI_APP_URL = "http://gdown.baidu.com/data/wisegame/b6d195395dae83d0/meituanwaimai_60710.apk";
+    public static final String DA_ZHONG_DIAN_PING_APP_URL = "http://gdown.baidu.com/data/wisegame/b0b529398f814c6c/dazhongdianping_100211.apk";
 
 }

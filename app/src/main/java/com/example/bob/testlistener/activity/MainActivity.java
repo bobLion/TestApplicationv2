@@ -35,6 +35,8 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import http.EngineCallBack;
+import http.HttpUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -113,6 +115,18 @@ public class MainActivity extends BaseActivity {
 
         mViewPageFront.setAdapter(appModuleAdapter);
         mViewPageFront.setOffscreenPageLimit(5);
+
+        HttpUtils.with(this).post().url("").addParam("",mTabEntities).execute(new EngineCallBack() {
+            @Override
+            public void onError(Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(String result) {
+
+            }
+        });
 
         mCommTab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override

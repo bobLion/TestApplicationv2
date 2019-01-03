@@ -1,5 +1,6 @@
 package com.example.bob.testlistener.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -50,7 +51,13 @@ public class LearningFragment extends BaseFragment {
     private long fileSize;
     private long downloaddFileSize;
     private String fileEx, fileNa,fileName;
+    private final int FILE_DOWNLOAD_START = 10000;
+    private final int FILE_DOWNLOADING = 10001;
+    private final int FILE_DOWN_SUCCEED = 10002;
+    private final int FILE_DOWN_FAILURE = 10003;
 
+
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -140,7 +147,7 @@ public class LearningFragment extends BaseFragment {
                     byte[] buffer = new byte[1024];
                     downloaddFileSize  = 0;
                     Message msg = mHandler.obtainMessage();
-                    msg.what = 0;
+                    msg.what = FILE_DOWNLOAD_START;
                     mHandler.sendMessage(msg);
                     do{
                         int number = is.read(buffer);
@@ -150,14 +157,14 @@ public class LearningFragment extends BaseFragment {
                         fos.write(buffer,0,number);
                         downloaddFileSize += number;
                         Message msg1 = mHandler.obtainMessage();
-                        msg1.what = 1;
+                        msg1.what = FILE_DOWNLOADING;
                         long result = downloaddFileSize * 100 /fileSize;
                         msg1.obj = downloaddFileSize * 100 / fileSize;
                         mHandler.sendMessage(msg1);
 
                     }while (true);
                     Message msg2 = mHandler.obtainMessage();
-                    msg2.what = 2;
+                    msg2.what = FILE_DOWN_SUCCEED;
                     mHandler.sendMessage(msg2);
                     try {
                         is.close();

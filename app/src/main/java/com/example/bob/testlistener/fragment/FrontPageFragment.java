@@ -1,5 +1,6 @@
 package com.example.bob.testlistener.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -118,6 +119,7 @@ public class FrontPageFragment extends BaseFragment{
 
     private OnChangePareTextViewListener onChangePareTextViewListener;
 
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
